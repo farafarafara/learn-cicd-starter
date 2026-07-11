@@ -20,3 +20,19 @@ jobs:
 
       - name: Run go test suite
         run: go test ./... -cover
+
+  style:
+    name: style
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v6
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: "1.26.0"
+
+      - name: Run go formatting check
+        run: test -z $(go fmt ./...)
